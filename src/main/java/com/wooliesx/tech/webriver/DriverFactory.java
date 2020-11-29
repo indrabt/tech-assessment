@@ -12,16 +12,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class DriverFactory {
     public WebDriver getInstance(String browserName) throws ReflectiveOperationException {
-        if (!System.getProperty("browser").isEmpty()) {
-            browserName = System.getProperty("browser");
-        }
+
 
         List<Class<? extends Driver>> drivers =
             new ArrayList<>(new Reflections(Driver.class.getPackage().getName()).getSubTypesOf(Driver.class));
-        String finalBrowserName = browserName;
-
+        
         return  drivers.stream()
-                      .filter(d -> d.getSimpleName().toLowerCase().contains(finalBrowserName.toLowerCase()))
+                      .filter(d -> d.getSimpleName().toLowerCase().contains(browserName.toLowerCase()))
                       .findFirst()
                       .orElseThrow(() -> new RuntimeException("Browser not supported"))
                       .getConstructor()

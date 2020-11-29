@@ -8,7 +8,7 @@ import io.cucumber.junit.CucumberOptions;
 @RunWith(Cucumber.class)
 @CucumberOptions(
     features = "src/test/resources/features/",
-    tags="@smoke1",
+    tags="@smoke",
     plugin = { "io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm"
    		},
     glue = {"com.wooliesx.tech.stepdefs"})
