@@ -16,7 +16,7 @@ public class DriverFactory {
 
         List<Class<? extends Driver>> drivers =
             new ArrayList<>(new Reflections(Driver.class.getPackage().getName()).getSubTypesOf(Driver.class));
-        
+
         return  drivers.stream()
                       .filter(d -> d.getSimpleName().toLowerCase().contains(browserName.toLowerCase()))
                       .findFirst()
